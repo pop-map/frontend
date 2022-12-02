@@ -40,15 +40,22 @@ p.request-status-failed {
 */
 
 
+div.header {
+	padding: 1em;
+}
 
 div.header > h1 {
-	display: block;
+	display: inline;
 }
 
 div.header > img {
 	width: 4em;
 	height: 4em;
 	border-radius: 50%;
+}
+
+iframe#telegram-login-popmapbot {
+	float: right;
 }
 
 li {
