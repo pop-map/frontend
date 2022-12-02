@@ -66,7 +66,7 @@ update msg model =
         Fetch ->
             ( { model | status = Status.Loading }
             , Http.get
-                { url = "http://127.0.0.1:5000/in/" ++ model.popId ++ "/" ++ String.fromInt model.pepIndex
+                { url = "http://popmap.org/api/in/" ++ model.popId ++ "/" ++ String.fromInt model.pepIndex
                 , expect = Http.expectJson Received PepInfo.decode
                 }
             )

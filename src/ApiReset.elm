@@ -42,7 +42,7 @@ update msg model =
         Send ->
             ( { model | status = Status.Loading }
             , Http.get
-                { url = "http://127.0.0.1:5000/reset"
+                { url = "http://popmap.org/api/reset"
                 , expect = Http.expectJson Received (Decode.null ())
                 }
             )
