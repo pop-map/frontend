@@ -53,7 +53,7 @@ update msg model =
         Send ->
             ( { model | status = Status.Loading }
             , Http.post
-                { url = "http://popmap.org/api/pop"
+                { url = "https://popmap.org/api/pop"
                 , body =
                     Http.jsonBody
                         (Encode.object

@@ -44,7 +44,7 @@ update msg model =
         Fetch ->
             ( { model | status = Status.Loading }
             , Http.post
-                { url = "http://popmap.org/api/area"
+                { url = "https://popmap.org/api/area"
                 , body =
                     Http.jsonBody
                         (Encode.object
