@@ -1,8 +1,8 @@
 module ApiGetArea exposing (main)
 
 import Browser
-import Html exposing (Html, button, h3, div, input, li, p, text, ul, pre)
-import Html.Attributes exposing (placeholder, class)
+import Html exposing (Html, button, div, h3, input, li, p, pre, text, ul)
+import Html.Attributes exposing (class, placeholder)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
@@ -29,9 +29,11 @@ init _ =
 view : Model -> Html Msg
 view model =
     div [ class "api-block" ]
-        [ h3 [] [text "Get in area"]
-        , button [ onClick Fetch ] [ text "Fetch in area" ]
-        , Status.view model.status
+        [ h3 [] [ text "Get in area" ]
+        , div [ class "action-group" ]
+            [ button [ onClick Fetch ] [ text "Fetch in area" ]
+            , Status.view model.status
+            ]
         , div [] (List.map (\s -> pre [] [ text s ]) model.list)
         ]
 

@@ -2,8 +2,8 @@ module PopInfo exposing (PopInfo, decode, view)
 
 import Html exposing (Html, div, p, text)
 import Json.Decode as Decode
-
 import UserInfo exposing (UserInfo)
+
 
 type alias PopInfo =
     { title : String

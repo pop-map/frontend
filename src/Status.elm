@@ -1,6 +1,6 @@
 module Status exposing (Status(..), view)
 
-import Html exposing (Html, p, text)
+import Html exposing (Html, p, span, text)
 import Html.Attributes exposing (class)
 
 
@@ -15,13 +15,13 @@ view : Status -> Html a
 view status =
     case status of
         None ->
-            p [class "request-status", class "request-status-none" ] [ text "" ]
+            span [ class "request-status", class "request-status-none" ] [ text "" ]
 
         Loading ->
-            p [class "request-status", class "request-status-loading" ] [ text "loading" ]
+            span [ class "request-status", class "request-status-loading" ] [ text "loading" ]
 
         Success ->
-            p [class "request-status", class "request-status-success" ] [ text "success" ]
+            span [ class "request-status", class "request-status-success" ] [ text "success" ]
 
         Failed ->
-            p [class "request-status", class "request-status-failed" ] [ text "failed" ]
+            span [ class "request-status", class "request-status-failed" ] [ text "failed" ]

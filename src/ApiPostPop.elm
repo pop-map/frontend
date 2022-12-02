@@ -1,13 +1,12 @@
 module ApiPostPop exposing (main)
 
 import Browser
-import Html exposing (Html, button, div, input, p, text, h3)
-import Html.Attributes exposing (placeholder, class)
+import Html exposing (Html, button, div, h3, input, p, text)
+import Html.Attributes exposing (class, placeholder)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
 import Json.Encode as Encode
-
 import Status
 import UserAuth exposing (UserAuth)
 
@@ -34,7 +33,7 @@ init _ =
 view : Model -> Html Msg
 view model =
     div [ class "api-block" ]
-        [ h3 [] [ text "Post a pop"]
+        [ h3 [] [ text "Post a pop" ]
         , input [ placeholder "title", onInput Title ] []
         , input [ placeholder "description", onInput Description ] []
         , button [ onClick Send ] [ text "send" ]

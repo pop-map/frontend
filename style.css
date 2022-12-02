@@ -13,21 +13,33 @@ input {
 	border-radius: 2px;
 	color: white;
 }
-
+/*
 button {
 	border: none;
 	border-radius: 2px;
 	background: #16A;
 	color: white;
 }
+button:hover {
+	cursor: pointer;
+}
+
 
 p.request-status {
 	display: inline;
-	margin: 0;
 }
 p.request-status-success {
 	background: green;
 }
+p.request-status-loading {
+	background: yellow;
+}
+p.request-status-failed {
+	background: red;
+}
+*/
+
+
 
 div.header > h1 {
 	display: block;
