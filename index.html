@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PopMap</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+	<div class="header">
+		<img src="popmap.jpg" />
+		<h1>PopMap</h1>
+	</div>
+	<div class="masonry">
+		<div>
+			<div id="elm-mount-point-get-area"></div>
+		</div>
+		<div>
+			<div id="elm-mount-point-get-pop"></div>
+		</div>
+		<div>
+			<div id="elm-mount-point-post-pop"></div>
+		</div>
+		<div>
+			<div id="elm-mount-point-get-pep"></div>
+		</div>
+		<div>
+			<div id="elm-mount-point-post-pep"></div>
+		</div>
+		<script src="elm.js"></script>
+		<script>
+			Elm.ApiGetArea.init({node: document.getElementById("elm-mount-point-get-area")});
+			Elm.ApiGetPop.init({node: document.getElementById("elm-mount-point-get-pop")});
+			Elm.ApiPostPop.init({node: document.getElementById("elm-mount-point-post-pop")});
+			Elm.ApiGetPep.init({node: document.getElementById("elm-mount-point-get-pep")});
+			Elm.ApiPostPep.init({node: document.getElementById("elm-mount-point-post-pep")});
+		</script>
+	</div>
+</body>
+
+</html>
