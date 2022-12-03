@@ -1,7 +1,8 @@
-SRC = $(wildcard src/Api*.elm)
+TARGET = $(wildcard src/Api*.elm)
+SOURCE = $(wildcard src/*.elm)
 
-output/elm.js: $(SRC)
-	elm make --optimize $^ --output $@
+output/elm.js: $(SOURCE) Makefile
+	elm make --optimize $(TARGET) --output $@
 
 clean:
 	rm -f output/elm.js

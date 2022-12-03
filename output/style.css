@@ -62,7 +62,35 @@ div.api-block > h3 {
 div.masonry {
   display: grid;
   gap: 1em;
-  grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+  grid-template-columns: repeat(auto-fill, 25em);
+}
+
+div.angle-form {
+	margin: 0.4em 0;
+}
+
+div.angle-form > input {
+	display: inline;
+	margin: 0;
+}
+
+div.angle-form > input.degree {
+	width: 50%;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-right: 0;
+}
+div.angle-form > input.minute {
+	width: 25%;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+}
+div.angle-form > input.second {
+	width: 25%;
+	border-left: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 div.pop-card {

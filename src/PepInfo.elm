@@ -2,10 +2,9 @@ module PepInfo exposing (PepInfo, decode, view)
 
 import Html exposing (Html, div, p, text)
 import Html.Attributes exposing (class)
+import Instant
 import Json.Decode as Decode
 import UserInfo exposing (UserInfo)
-
-import Instant
 
 
 type alias PepInfo =
@@ -30,5 +29,5 @@ view pep =
             [ UserInfo.view pep.user
             , Instant.view pep.created
             ]
-        , p [ class "pep-content"] [ text pep.content ]
+        , p [ class "pep-content" ] [ text pep.content ]
         ]

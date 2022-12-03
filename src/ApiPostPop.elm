@@ -9,11 +9,14 @@ import Json.Decode as Decode
 import Json.Encode as Encode
 import Status
 import UserAuth exposing (UserAuth)
+import Angle exposing (Angle)
 
 
 type alias Model =
     { title : String
     , description : String
+    , latitude : Angle
+    , longitude : Angle
     , status : Status.Status
     }
 
@@ -23,17 +26,21 @@ type Msg
     | Description String
     | Send
     | Sent (Result Http.Error String)
+    | Latitude Angle.Update
+    | Longitude Angle.Update
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model "" "" Status.None, Cmd.none )
+    ( Model "" "" Angle.default Angle.default Status.None, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     div [ class "api-block" ]
         [ h3 [] [ text "Post a pop" ]
+        , Angle.form "latitude" Latitude
+        , Angle.form "longitude" Longitude
         , input [ placeholder "title", onInput Title ] []
         , input [ placeholder "description", onInput Description ] []
         , button [ onClick Send ] [ text "send" ]
@@ -49,6 +56,12 @@ update msg model =
 
         Description description ->
             ( { model | description = description }, Cmd.none )
+        
+        Latitude updater ->
+            ( { model | latitude = updater model.latitude }, Cmd.none)
+
+        Longitude updater ->
+            ( { model | longitude = updater model.longitude }, Cmd.none)
 
         Send ->
             ( { model | status = Status.Loading }
@@ -64,8 +77,8 @@ update msg model =
                               )
                             , ( "location"
                               , Encode.object
-                                    [ ( "lat", Encode.list Encode.int [ 0, 0, 0 ] )
-                                    , ( "lng", Encode.list Encode.int [ 0, 0, 0 ] )
+                                    [ ( "lat", Angle.encode model.latitude )
+                                    , ( "lng", Angle.encode model.longitude )
                                     ]
                               )
                             , ( "expire", Encode.int 0 )
