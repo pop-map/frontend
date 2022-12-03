@@ -1,24 +1,30 @@
-module Angle exposing (Angle, Update, form, decode, encode, default)
+module Angle exposing (Angle, Update, decode, default, encode, form, view)
 
-import Html exposing (Html, div, input)
+import Html exposing (Html, div, input, span, text)
 import Html.Attributes as Attr exposing (class, placeholder, type_)
 import Html.Events exposing (onInput)
 import Json.Decode as Decode
 import Json.Encode as Encode
 
-type alias Update = (Angle -> Angle)
+
+type alias Update =
+    Angle -> Angle
+
 
 default : Angle
-default = Angle 0 0 0
+default =
+    Angle 0 0 0
 
 
 updateDeg : String -> Update
 updateDeg deg angle =
     { angle | deg = deg |> String.toInt |> Maybe.withDefault 0 }
 
+
 updateMin : String -> Update
 updateMin min angle =
     { angle | min = min |> String.toInt |> Maybe.withDefault 0 }
+
 
 updateSec : String -> Update
 updateSec sec angle =
@@ -34,17 +40,44 @@ form angle msg =
         , input [ class "second", onInput (\s -> msg <| updateSec s), placeholder "second", type_ "number", Attr.min "0", Attr.max "59" ] []
         ]
 
+
 type alias Angle =
     { deg : Int
     , min : Int
     , sec : Int
     }
 
+
 decode : Decode.Decoder Angle
-decode = Decode.map3 Angle
-    (Decode.index 0 Decode.int)
-    (Decode.index 1 Decode.int)
-    (Decode.index 2 Decode.int)
+decode =
+    Decode.map3 Angle
+        (Decode.index 0 Decode.int)
+        (Decode.index 1 Decode.int)
+        (Decode.index 2 Decode.int)
+
 
 encode : Angle -> Encode.Value
-encode angle = Encode.list Encode.int [angle.deg, angle.min, angle.sec]
+encode angle =
+    Encode.list Encode.int [ angle.deg, angle.min, angle.sec ]
+
+
+stringLeftPadding : Int -> Char -> String -> String
+stringLeftPadding len char str =
+    (String.repeat len (String.fromChar char) ++ str) |> String.right (max len <| String.length str)
+
+
+padder : String -> String
+padder =
+    stringLeftPadding 2 '0'
+
+
+view : Angle -> Html a
+view { deg, min, sec } =
+    span [ class "angle" ]
+        [ text (String.fromInt deg)
+        , text "°"
+        , text (padder <| String.fromInt min)
+        , text "'"
+        , text (padder <| String.fromInt sec)
+        , text "\""
+        ]

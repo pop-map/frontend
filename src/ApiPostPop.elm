@@ -1,5 +1,6 @@
 module ApiPostPop exposing (main)
 
+import Angle exposing (Angle)
 import Browser
 import Html exposing (Html, button, div, h3, input, p, text)
 import Html.Attributes exposing (class, placeholder)
@@ -9,7 +10,6 @@ import Json.Decode as Decode
 import Json.Encode as Encode
 import Status
 import UserAuth exposing (UserAuth)
-import Angle exposing (Angle)
 
 
 type alias Model =
@@ -56,12 +56,12 @@ update msg model =
 
         Description description ->
             ( { model | description = description }, Cmd.none )
-        
+
         Latitude updater ->
-            ( { model | latitude = updater model.latitude }, Cmd.none)
+            ( { model | latitude = updater model.latitude }, Cmd.none )
 
         Longitude updater ->
-            ( { model | longitude = updater model.longitude }, Cmd.none)
+            ( { model | longitude = updater model.longitude }, Cmd.none )
 
         Send ->
             ( { model | status = Status.Loading }

@@ -1,5 +1,6 @@
 module PopInfo exposing (PopInfo, decode, view)
 
+import Angle exposing (Angle)
 import Html exposing (Html, div, h3, p, pre, span, text)
 import Html.Attributes exposing (class)
 import Instant
@@ -13,6 +14,8 @@ type alias PopInfo =
     , created : Int
     , peps : Int
     , user : UserInfo
+    , latitude : Angle
+    , longitude : Angle
     }
 
 
@@ -22,6 +25,11 @@ view pop =
         [ p [ class "pop-context" ]
             [ UserInfo.view pop.user
             , Instant.view pop.created
+            , span [ class "geolocation" ]
+                [ Angle.view pop.latitude
+                , text " / "
+                , Angle.view pop.longitude
+                ]
             ]
         , h3 [ class "pop-title" ] [ text pop.title ]
         , p [ class "pop-description" ] [ text pop.description ]
@@ -40,9 +48,11 @@ view pop =
 
 decode : Decode.Decoder PopInfo
 decode =
-    Decode.map5 PopInfo
+    Decode.map7 PopInfo
         (Decode.field "title" Decode.string)
         (Decode.field "description" Decode.string)
         (Decode.field "created" Decode.int)
         (Decode.field "peps" Decode.int)
         (Decode.field "user" UserInfo.decode)
+        (Decode.field "location" <| Decode.field "lat" Angle.decode)
+        (Decode.field "location" <| Decode.field "lng" Angle.decode)

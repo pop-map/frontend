@@ -121,16 +121,16 @@ div.user-card {
 }
 
 div.pop-card > h3.pop-title {
-	background: #7775;
+	background: #FFFFFF0A;
 	padding: 4px;
-	border-radius: 4px;
+	border-radius: 3px;
 	margin: 1em 0 0.4em 0;
 }
 
 div.pop-card > p.pop-description {
-	background: #7775;
+	background: #FFFFFF0A;
 	padding: 4px;
-	border-radius: 4px;
+	border-radius: 3px;
 	margin: 0.4em 0 1em 0;
 }
 
@@ -167,9 +167,9 @@ div.user-card > span.telegram-id {
 }
 
 div.pep-card > p.pep-content {
-	background: #7775;
+	background: #FFFFFF0A;
 	padding: 4px;
-	border-radius: 4px;
+	border-radius: 3px;
 	margin: 0.4em 0 1em 0;
 }
 
@@ -178,6 +178,11 @@ div.pep-card > p.pep-context {
 }
 
 span.date {
+	font-family: monospace;
+	float: right;
+}
+
+span.geolocation {
 	font-family: monospace;
 	float: right;
 }

@@ -39,7 +39,7 @@ view model =
         [ h3 [] [ text "Get in area" ]
         , Angle.form "latitude" InputLatitude
         , Angle.form "longitude" InputLongitude
-        , input [ class "radius", Attr.min "1", onInput (\s -> String.toInt s |> Maybe.withDefault 0 |> InputRadius), placeholder "radius in meter", type_ "number"] []
+        , input [ class "radius", Attr.min "1", onInput (\s -> String.toInt s |> Maybe.withDefault 0 |> InputRadius), placeholder "radius in meter", type_ "number" ] []
         , div [ class "action-group" ]
             [ button [ onClick Fetch ] [ text "fetch" ]
             , Status.view model.status
@@ -81,6 +81,7 @@ update msg model =
 
         InputRadius radius ->
             ( { model | radius = radius }, Cmd.none )
+
 
 main =
     Browser.element
