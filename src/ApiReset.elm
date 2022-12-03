@@ -30,7 +30,7 @@ view model =
     div [ class "api-block" ]
         [ h3 [] [ text "Server reset" ]
         , div [ class "action-group" ]
-            [ button [ onClick Send ] [ text "Clear all data" ]
+            [ button [ onClick Send ] [ text "clear all data" ]
             , Status.view model.status
             ]
         ]

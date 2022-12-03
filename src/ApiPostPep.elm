@@ -34,7 +34,7 @@ view : Model -> Html Msg
 view model =
     div [ class "api-block" ]
         [ h3 [] [ text "Post a pep" ]
-        , input [ placeholder "Pop id", onInput InputInPopId ] []
+        , input [ placeholder "pop uuid", onInput InputInPopId ] []
         , input [ placeholder "content", onInput InputContent ] []
         , button [ onClick Send ] [ text "send" ]
         , Status.view model.status

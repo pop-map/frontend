@@ -1,5 +1,5 @@
 body {
-	background-color: #444;
+	background-color: #343434;
 	color: white;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -7,38 +7,23 @@ body {
 input {
 	display: block;
 	width: 100%;
-	margin: 0.2em 0;
-	border: none;
-	background: #0001;
+	box-sizing: border-box;
+	margin: 0.4em 0;
+	background: #0003;
 	border-radius: 2px;
 	color: white;
+	padding: 0.2em 0.6em;
+	border: dashed 1px #FFF2;
 }
-/*
+
 button {
 	border: none;
-	border-radius: 2px;
-	background: #16A;
-	color: white;
+	border-radius: 3px;
+	font-weight: bold;
+	color: #282828;
+	box-shadow: 0 0 2px #0002;
+	padding: 0.1em 0.6em;
 }
-button:hover {
-	cursor: pointer;
-}
-
-
-p.request-status {
-	display: inline;
-}
-p.request-status-success {
-	background: green;
-}
-p.request-status-loading {
-	background: yellow;
-}
-p.request-status-failed {
-	background: red;
-}
-*/
-
 
 div.header {
 	padding: 1em;
@@ -58,24 +43,144 @@ iframe#telegram-login-popmapbot {
 	float: right;
 }
 
-li {
-	list-style: none;
+div.masonry > div {
+	width: 25em;
 }
 
 div.api-block {
-	margin: 1em;
+	box-shadow: 0 0 6px #0002;
+	border-radius: 4px;
+	border: solid 1px #0006;
+	background: #444;
+	padding: 1em;
 }
 
-div.masonry > div {
-	box-shadow: 0 0 5px #0004;
-	border-radius: 4px;
-	border: solid 1px #0004;
-	width: 25em;
+div.api-block > h3 {
+	margin-top: 0;
 }
 
 div.masonry {
   display: grid;
   gap: 1em;
   grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
-  /* grid-template-rows: masonry; */
+}
+
+div.pop-card {
+	border: solid #333 1px;
+	border-radius: 3px;
+	padding: 0 0.7em;
+	background: #FFFFFF0A;
+	margin-top: 1em;
+}
+
+div.pep-card {
+	border: solid #333 1px;
+	border-radius: 3px;
+	padding: 0 0.7em;
+	background: #FFFFFF0A;
+	margin-top: 1em;
+}
+
+div.uuid-list {
+	border-radius: 3px;
+	padding: 0.7em;
+	background: #FFFFFF0A;
+	margin-top: 1em;
+}
+
+div.user-card {
+	display: inline-block;
+}
+
+div.pop-card > h3.pop-title {
+	background: #7775;
+	padding: 4px;
+	border-radius: 4px;
+	margin: 1em 0 0.4em 0;
+}
+
+div.pop-card > p.pop-description {
+	background: #7775;
+	padding: 4px;
+	border-radius: 4px;
+	margin: 0.4em 0 1em 0;
+}
+
+div.pop-card > p.pop-context {
+	margin: 0.4em 0;
+}
+
+div.pop-card > p.peps-cardinal {
+	margin-bottom: 0.4em;
+	margin-top: 1em;
+}
+
+div.pop-card > p.peps-cardinal::before {
+	content: "💬 ";
+}
+
+div.user-card > img {
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+}
+
+div.user-card > span.first-name {
+	margin: 3px;
+	font-weight: bold;
+}
+div.user-card > span.last-name {
+	margin: 3px;
+	font-weight: bold;
+}
+div.user-card > span.telegram-id {
+	color: #FFF8;
+	font-family: monospace;
+}
+
+div.pep-card > p.pep-content {
+	background: #7775;
+	padding: 4px;
+	border-radius: 4px;
+	margin: 0.4em 0 1em 0;
+}
+
+div.pep-card > p.pep-context {
+	margin: 0.4em 0;
+}
+
+span.date {
+	font-family: monospace;
+	float: right;
+}
+
+ @keyframes spinner {
+  0% {transform:translate(0.2em, 0.1em) rotate(0deg);}
+  100% {
+    transform:translate(0.2em, 0.1em) rotate(360deg);
+  }
+}
+.spin::after {
+	animation: 0.25s linear infinite spinner;
+	animation-play-state: inherit;
+	border: solid 4px #FFF3;
+	border-bottom-color: #1CCBFF;
+	border-radius: 50%;
+	box-shadow: 0 0 5px #0003;
+	content: "";
+	height: 0.5em;
+	width: 0.5em;
+	position:absolute;
+	will-change: transform;
+}
+
+span.request-status-success {
+	font-weight: bold;
+	color: #6FA;
+	margin: 0.5em;
+}
+span.request-status-failed{
+	font-weight: bold;
+	color: #FF7856;
+	margin: 0.5em;
 }

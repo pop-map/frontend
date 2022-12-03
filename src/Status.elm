@@ -15,10 +15,10 @@ view : Status -> Html a
 view status =
     case status of
         None ->
-            span [ class "request-status", class "request-status-none" ] [ text "" ]
+            span [ class "request-status", class "request-status-none" ] [ ]
 
         Loading ->
-            span [ class "request-status", class "request-status-loading" ] [ text "loading" ]
+            span [ class "request-status", class "request-status-loading", class "spin" ] [ ]
 
         Success ->
             span [ class "request-status", class "request-status-success" ] [ text "success" ]

@@ -1,7 +1,7 @@
 module ApiGetPop exposing (main)
 
 import Browser
-import Html exposing (Html, button, div, h3, input, li, p, text, ul)
+import Html exposing (Html, button, div, h3, hr, input, li, p, text, ul)
 import Html.Attributes exposing (class, placeholder)
 import Html.Events exposing (onClick, onInput)
 import Http
@@ -34,7 +34,7 @@ view model =
     div [ class "api-block" ]
         ([ h3 [] [ text "Get specific pop" ]
          , input [ onInput InputId, placeholder "pop uuid" ] []
-         , button [ onClick Fetch ] [ text "Fetch pop info" ]
+         , button [ onClick Fetch ] [ text "fetch" ]
          , Status.view model.status
          ]
             ++ (case model.popInfo of

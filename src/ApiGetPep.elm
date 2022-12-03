@@ -37,7 +37,7 @@ view model =
         ([ h3 [] [ text "Get specific pep" ]
          , input [ onInput InputId, placeholder "pop uuid" ] []
          , input [ onInput InputIndex, placeholder "pep index", type_ "number" ] []
-         , button [ onClick Fetch ] [ text "Fetch pep" ]
+         , button [ onClick Fetch ] [ text "fetch" ]
          , Status.view model.status
          ]
             ++ (case model.pepInfo of

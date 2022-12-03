@@ -1,6 +1,7 @@
 module UserInfo exposing (UserInfo, decode, view)
 
-import Html exposing (Html, div, p, text)
+import Html exposing (Html, div, img, p, span, text)
+import Html.Attributes exposing (class, src)
 import Json.Decode as Decode
 
 
@@ -23,8 +24,9 @@ decode =
 
 view : UserInfo -> Html a
 view user =
-    div []
-        [ p [] [ text "id: ", text (String.fromInt user.id) ]
-        , p [] [ text "first name: ", text user.firstName ]
-        , p [] [ text "last name: ", text user.lastName ]
+    div [ class "user-card" ]
+        [ img [ src user.photoUrl ] []
+        , span [ class "first-name" ] [ text user.firstName ]
+        , span [ class "last-name" ] [ text user.lastName ]
+        , span [ class "telegram-id" ] [ text (String.fromInt user.id) ]
         ]

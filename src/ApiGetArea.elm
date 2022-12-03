@@ -31,10 +31,10 @@ view model =
     div [ class "api-block" ]
         [ h3 [] [ text "Get in area" ]
         , div [ class "action-group" ]
-            [ button [ onClick Fetch ] [ text "Fetch in area" ]
+            [ button [ onClick Fetch ] [ text "fetch" ]
             , Status.view model.status
             ]
-        , div [] (List.map (\s -> pre [] [ text s ]) model.list)
+        , div [class "uuid-list"] (List.map (\s -> pre [] [ text s ]) model.list)
         ]
 
 

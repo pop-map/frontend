@@ -15,14 +15,12 @@ type alias UserAuth =
 
 default : UserAuth
 default =
-    { id = 0
+    { id = 777111
     , authDate = 0
     , firstName = "David"
     , lastName = "Iwanoa"
-    , photoUrl = ""
-
-    {- TODO: replace with List.repeat 64 '0' -}
-    , hash = "0000000000000000000000000000000000000000000000000000000000000000"
+    , photoUrl = "https://popmap.org/popmap.jpg"
+    , hash = String.repeat 64 "0"
     }
 
 
