@@ -84,9 +84,11 @@ toMonthShort month =
         Dec ->
             "Dec"
 
+
 stringLeftPadding : Int -> Char -> String -> String
 stringLeftPadding len char str =
     (String.repeat len (String.fromChar char) ++ str) |> String.right (max len <| String.length str)
+
 
 view : Int -> Html a
 view time =

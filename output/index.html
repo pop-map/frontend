@@ -39,14 +39,33 @@
 		<div>
 			<div id="elm-mount-point-reset"></div>
 		</div>
+		<div>
+			<div class="api-block">
+				<h3>Authentication overwrite</h3>
+				<textarea id="fake-auth-text-input" rows="8"
+					placeholder="{&NewLine;&#32;&#32;&#34;hash&#34;:&#32;&#34;FAKE_AUTH&#34;&NewLine;}"
+					spellcheck="false">{}</textarea>
+				<button onclick="fake_authenticate()">autheticate</button>
+				<p>For development purposes, in <strong>dev mode</strong>, the server will accept authentication when the
+					security
+					field <code>"hash"</code> is set to
+					<code>"FAKE_AUTH"</code>.
+				</p>
+			</div>
+		</div>
 		<script src="elm.js"></script>
 		<script>
-			Elm.ApiGetArea.init({node: document.getElementById("elm-mount-point-get-area")});
-			Elm.ApiGetPop.init({node: document.getElementById("elm-mount-point-get-pop")});
-			Elm.ApiPostPop.init({node: document.getElementById("elm-mount-point-post-pop")});
-			Elm.ApiGetPep.init({node: document.getElementById("elm-mount-point-get-pep")});
-			Elm.ApiPostPep.init({node: document.getElementById("elm-mount-point-post-pep")});
-			Elm.ApiReset.init({node: document.getElementById("elm-mount-point-reset")});
+			let appGetArea = Elm.ApiGetArea.init({node: document.getElementById("elm-mount-point-get-area")});
+			let appGetPop = Elm.ApiGetPop.init({node: document.getElementById("elm-mount-point-get-pop")});
+			let appPostPop = Elm.ApiPostPop.init({node: document.getElementById("elm-mount-point-post-pop")});
+			let appGetPep = Elm.ApiGetPep.init({node: document.getElementById("elm-mount-point-get-pep")});
+			let appPostPep = Elm.ApiPostPep.init({node: document.getElementById("elm-mount-point-post-pep")});
+			let appReset = Elm.ApiReset.init({node: document.getElementById("elm-mount-point-reset")});
+
+			function fake_authenticate() {
+				let content = document.getElementById("fake-auth-text-input").value;
+				appPostPop.ports.receiveUserAuth.send(JSON.parse(content));
+			}
 		</script>
 	</div>
 </body>

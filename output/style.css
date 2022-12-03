@@ -16,6 +16,18 @@ input {
 	border: dashed 1px #FFF2;
 }
 
+textarea {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0.4em 0;
+	background: #0003;
+	border-radius: 2px;
+	color: white;
+	padding: 0.2em 0.6em;
+	border: dashed 1px #FFF2;
+	white-space: pre;
+}
+
 button {
 	border: none;
 	border-radius: 3px;
@@ -148,9 +160,10 @@ div.pop-card > p.peps-cardinal::before {
 }
 
 div.user-card > img {
-	width: 1em;
-	height: 1em;
+	width: 1.2em;
+	height: 1.2em;
 	border-radius: 50%;
+	margin: -0.2em 0;
 }
 
 div.user-card > span.first-name {
@@ -212,8 +225,13 @@ span.request-status-success {
 	color: #6FA;
 	margin: 0.5em;
 }
-span.request-status-failed{
+span.request-status-failed {
 	font-weight: bold;
 	color: #FF7856;
+	margin: 0.5em;
+}
+span.request-status-need-auth {
+	font-weight: bold;
+	color: #F0F040;
 	margin: 0.5em;
 }

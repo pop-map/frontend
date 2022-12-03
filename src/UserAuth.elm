@@ -1,6 +1,7 @@
-module UserAuth exposing (UserAuth, default, encode)
+module UserAuth exposing (UserAuth, default, encode, decode)
 
 import Json.Encode as Encode
+import Json.Decode as Decode
 
 
 type alias UserAuth =
@@ -34,3 +35,12 @@ encode user =
         , ( "photo_url", Encode.string user.photoUrl )
         , ( "hash", Encode.string user.hash )
         ]
+
+decode : Decode.Decoder UserAuth
+decode = Decode.map6 UserAuth
+    (Decode.field "id" Decode.int)
+    (Decode.field "auth_date" Decode.int)
+    (Decode.field "first_name" Decode.string)
+    (Decode.field "last_name" Decode.string)
+    (Decode.field "photo_url" Decode.string)
+    (Decode.field "hash" Decode.string)

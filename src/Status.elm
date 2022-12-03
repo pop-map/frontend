@@ -9,6 +9,7 @@ type Status
     | Loading
     | Success
     | Failed
+    | NeedAuth
 
 
 view : Status -> Html a
@@ -25,3 +26,6 @@ view status =
 
         Failed ->
             span [ class "request-status", class "request-status-failed" ] [ text "failed" ]
+
+        NeedAuth ->
+            span [ class "request-status", class "request-status-need-auth" ] [ text "authentication needed" ]

@@ -1,9 +1,9 @@
-module ApiPostPop exposing (main)
+port module ApiPostPop exposing (main)
 
 import Angle exposing (Angle)
 import Browser
 import Html exposing (Html, button, div, h3, input, p, text)
-import Html.Attributes exposing (class, placeholder)
+import Html.Attributes exposing (class, placeholder, disabled)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
@@ -12,11 +12,15 @@ import Status
 import UserAuth exposing (UserAuth)
 
 
+port receiveUserAuth : (Decode.Value -> msg) -> Sub msg
+
+
 type alias Model =
     { title : String
     , description : String
     , latitude : Angle
     , longitude : Angle
+    , user : Maybe UserAuth
     , status : Status.Status
     }
 
@@ -28,11 +32,12 @@ type Msg
     | Sent (Result Http.Error String)
     | Latitude Angle.Update
     | Longitude Angle.Update
+    | Authenticate (Result Decode.Error UserAuth)
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model "" "" Angle.default Angle.default Status.None, Cmd.none )
+    ( Model "" "" Angle.default Angle.default Nothing Status.NeedAuth, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -43,7 +48,7 @@ view model =
         , Angle.form "longitude" Longitude
         , input [ placeholder "title", onInput Title ] []
         , input [ placeholder "description", onInput Description ] []
-        , button [ onClick Send ] [ text "send" ]
+        , button [ onClick Send, disabled (model.user == Nothing)] [ text "send" ]
         , Status.view model.status
         ]
 
@@ -51,6 +56,12 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        Authenticate (Ok user) ->
+            ( {model | user = Just user, status = Status.None }, Cmd.none )
+        
+        Authenticate (Err _) ->
+            ( model, Cmd.none )
+
         Title title ->
             ( { model | title = title }, Cmd.none )
 
@@ -73,7 +84,7 @@ update msg model =
                             [ ( "title", Encode.string model.title )
                             , ( "description", Encode.string model.description )
                             , ( "user"
-                              , UserAuth.encode UserAuth.default
+                              , UserAuth.encode <| Maybe.withDefault UserAuth.default model.user
                               )
                             , ( "location"
                               , Encode.object
@@ -100,5 +111,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = \_ -> Sub.none
+        , subscriptions = \_ -> receiveUserAuth (Authenticate << Decode.decodeValue (UserAuth.decode))
         }
