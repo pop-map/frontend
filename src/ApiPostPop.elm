@@ -12,7 +12,7 @@ import Status
 import UserAuth exposing (UserAuth)
 
 
-port receiveUserAuth : (Decode.Value -> msg) -> Sub msg
+port receiveUserAuthPop : (Decode.Value -> msg) -> Sub msg
 
 
 type alias Model =
@@ -111,5 +111,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = \_ -> receiveUserAuth (Authenticate << Decode.decodeValue (UserAuth.decode))
+        , subscriptions = \_ -> receiveUserAuthPop (Authenticate << Decode.decodeValue (UserAuth.decode))
         }

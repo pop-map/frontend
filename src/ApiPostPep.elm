@@ -10,7 +10,7 @@ import Json.Encode as Encode
 import Status
 import UserAuth exposing (UserAuth)
 
-port receiveUserAuth : (Decode.Value -> msg) -> Sub msg
+port receiveUserAuthPep : (Decode.Value -> msg) -> Sub msg
 
 type alias Model =
     { inPopId : String
@@ -86,5 +86,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = \_ -> receiveUserAuth (Authenticate << Decode.decodeValue (UserAuth.decode))
+        , subscriptions = \_ -> receiveUserAuthPep (Authenticate << Decode.decodeValue (UserAuth.decode))
         }
