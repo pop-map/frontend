@@ -3,7 +3,7 @@ module ApiGetArea exposing (main)
 import Angle exposing (Angle)
 import Browser
 import Html exposing (Html, button, div, h3, input, li, p, pre, text, ul)
-import Html.Attributes as Attr exposing (class, placeholder, type_)
+import Html.Attributes as Attr exposing (class, placeholder, type_, disabled)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
@@ -41,7 +41,7 @@ view model =
         , Angle.form "longitude" InputLongitude
         , input [ class "radius", Attr.min "1", onInput (\s -> String.toInt s |> Maybe.withDefault 0 |> InputRadius), placeholder "radius in meter", type_ "number" ] []
         , div [ class "action-group" ]
-            [ button [ onClick Fetch ] [ text "fetch" ]
+            [ button [ onClick Fetch, disabled (model.status == Status.Loading) ] [ text "fetch" ]
             , Status.view model.status
             ]
         , div [ class "uuid-list" ] (List.map (\s -> pre [] [ text s ]) model.list)

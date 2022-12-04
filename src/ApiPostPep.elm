@@ -39,7 +39,7 @@ view model =
         [ h3 [] [ text "Post a pep" ]
         , input [ placeholder "pop uuid", onInput InputInPopId ] []
         , input [ placeholder "content", onInput InputContent ] []
-        , button [ onClick Send, disabled (model.user == Nothing)] [ text "send" ]
+        , button [ onClick Send, disabled (model.user == Nothing || model.status == Status.Loading)] [ text "send" ]
         , Status.view model.status
         ]
 

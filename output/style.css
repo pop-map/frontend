@@ -1,7 +1,18 @@
 body {
+	margin-left: 2em;
+	margin-right: 2em;
 	background-color: #343434;
 	color: white;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+	color: #5AF;
+}
+
+p {
+	max-width: 40em;
+	text-align: justify;
 }
 
 input {
@@ -46,9 +57,10 @@ div.header > h1 {
 }
 
 div.header > img {
-	width: 4em;
-	height: 4em;
+	width: 3em;
+	height: 3em;
 	border-radius: 50%;
+	transform: translate(0, 0.7em);
 }
 
 iframe#telegram-login-popmapbot {

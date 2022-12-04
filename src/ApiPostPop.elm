@@ -48,7 +48,7 @@ view model =
         , Angle.form "longitude" Longitude
         , input [ placeholder "title", onInput Title ] []
         , input [ placeholder "description", onInput Description ] []
-        , button [ onClick Send, disabled (model.user == Nothing)] [ text "send" ]
+        , button [ onClick Send, disabled (model.user == Nothing || model.status == Status.Loading)] [ text "send" ]
         , Status.view model.status
         ]
 

@@ -2,7 +2,7 @@ module ApiGetPep exposing (main)
 
 import Browser
 import Html exposing (Html, button, div, h3, input, li, p, text, ul)
-import Html.Attributes exposing (class, placeholder, type_)
+import Html.Attributes exposing (class, placeholder, type_, disabled)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
@@ -37,7 +37,7 @@ view model =
         ([ h3 [] [ text "Get specific pep" ]
          , input [ onInput InputId, placeholder "pop uuid" ] []
          , input [ onInput InputIndex, placeholder "pep index", type_ "number" ] []
-         , button [ onClick Fetch ] [ text "fetch" ]
+         , button [ onClick Fetch, disabled (model.status == Status.Loading) ] [ text "fetch" ]
          , Status.view model.status
          ]
             ++ (case model.pepInfo of

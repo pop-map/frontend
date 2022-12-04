@@ -2,7 +2,7 @@ module ApiReset exposing (main)
 
 import Browser
 import Html exposing (Html, button, div, h3, input, li, p, pre, text, ul)
-import Html.Attributes exposing (class, placeholder)
+import Html.Attributes exposing (class, placeholder, disabled)
 import Html.Events exposing (onClick, onInput)
 import Http
 import Json.Decode as Decode
@@ -30,7 +30,7 @@ view model =
     div [ class "api-block" ]
         [ h3 [] [ text "Server reset" ]
         , div [ class "action-group" ]
-            [ button [ onClick Send ] [ text "clear all data" ]
+            [ button [ onClick Send, disabled (model.status == Status.Loading) ] [ text "clear all data" ]
             , Status.view model.status
             ]
         ]
