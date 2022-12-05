@@ -67,7 +67,7 @@ update msg model =
                     Http.jsonBody
                         (Encode.object
                             [ ( "content", Encode.string model.content )
-                            , ( "user", UserAuth.encode UserAuth.default )
+                            , ( "user", UserAuth.encode <| Maybe.withDefault UserAuth.default model.user )
                             ]
                         )
                 , expect = Http.expectJson Sent Decode.int
